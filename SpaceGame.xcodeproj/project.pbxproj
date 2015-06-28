@@ -15,7 +15,7 @@
 		5B622A751B3DAF8300DADF2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B622A741B3DAF8300DADF2A /* Images.xcassets */; };
 		5B622A781B3DAF8300DADF2A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B622A761B3DAF8300DADF2A /* LaunchScreen.xib */; };
 		5B622A841B3DAF8300DADF2A /* SpaceGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B622A831B3DAF8300DADF2A /* SpaceGameTests.swift */; };
-		5B622A8E1B3DE94100DADF2A /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B622A8D1B3DE94100DADF2A /* Actions.swift */; };
+		5B622A8E1B3DE94100DADF2A /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B622A8D1B3DE94100DADF2A /* Variables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 		5B622A7D1B3DAF8300DADF2A /* SpaceGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B622A821B3DAF8300DADF2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B622A831B3DAF8300DADF2A /* SpaceGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceGameTests.swift; sourceTree = "<group>"; };
-		5B622A8D1B3DE94100DADF2A /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		5B622A8D1B3DE94100DADF2A /* Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +86,7 @@
 				5B622A691B3DAF8300DADF2A /* AppDelegate.swift */,
 				5B622A6B1B3DAF8300DADF2A /* GameScene.sks */,
 				5B622A6D1B3DAF8300DADF2A /* GameScene.swift */,
-				5B622A8D1B3DE94100DADF2A /* Actions.swift */,
+				5B622A8D1B3DE94100DADF2A /* Variables.swift */,
 				5B622A6F1B3DAF8300DADF2A /* GameViewController.swift */,
 				5B622A711B3DAF8300DADF2A /* Main.storyboard */,
 				5B622A741B3DAF8300DADF2A /* Images.xcassets */,
@@ -223,7 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B622A6E1B3DAF8300DADF2A /* GameScene.swift in Sources */,
-				5B622A8E1B3DE94100DADF2A /* Actions.swift in Sources */,
+				5B622A8E1B3DE94100DADF2A /* Variables.swift in Sources */,
 				5B622A701B3DAF8300DADF2A /* GameViewController.swift in Sources */,
 				5B622A6A1B3DAF8300DADF2A /* AppDelegate.swift in Sources */,
 			);
@@ -423,6 +423,7 @@
 				5B622A891B3DAF8300DADF2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5B622A8A1B3DAF8300DADF2A /* Build configuration list for PBXNativeTarget "SpaceGameTests" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +432,7 @@
 				5B622A8C1B3DAF8300DADF2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

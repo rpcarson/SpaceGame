@@ -10,10 +10,15 @@ import Foundation
 import UIKit
 import SpriteKit
 
-var moveLeft = SKAction()
-var moveRight = SKAction()
-var fireChaingun = SKAction()
 
+
+
+
+var moveLeft: SKSpriteNode!
+var moveRight: SKSpriteNode!
+
+var fireChaingun: SKSpriteNode!
+var fireMissile: SKSpriteNode!
 
 
 
