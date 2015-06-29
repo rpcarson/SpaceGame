@@ -17,8 +17,7 @@ import SpriteKit
 var moveLeft: SKSpriteNode!
 var moveRight: SKSpriteNode!
 
-var fireChaingun: SKSpriteNode!
-var fireMissile: SKSpriteNode!
+
 
 
 
