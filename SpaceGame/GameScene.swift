@@ -17,22 +17,28 @@ var missileDamage: Int!
 
 
 
+var ammoDropChance: Int = 1
+
+var dropChance: Int = 1
+
+//var DC:Int = random() % 10
+
+
+
+var bg1 = SKSpriteNode(imageNamed: "bgspace")
+var bg2 = SKSpriteNode(imageNamed: "bgspace")
+
+
 let enemyCategory: UInt32 = 1
 let playerWeaponCategory: UInt32 = 2
 let missileCatgeory: UInt32 = 3
 let chaingunWeaponCategory: UInt32 = 4
 let beamVortexCategory: UInt32 = 5
 
-
-//let thrust = SKSpriteNode(imageNamed: "thrust1")
 var globalThrust: SKSpriteNode!
-
-
 
 var beamSweep = SKAction.rotateToAngle(360, duration: 10)
 let infiteSweep = SKAction.repeatActionForever(beamSweep)
-
-var alienOneTexture: SKTexture!
 
 
 
@@ -40,7 +46,7 @@ let energyBeam1 = SKSpriteNode(imageNamed: "ebeam1")
 let energyBeam2 = SKSpriteNode(imageNamed: "ebeam1")
 
 var spawnAlien: SKSpriteNode!
-
+var alienOneTexture: SKTexture!
 
 var eBeamTexture: SKTexture!
 var fireEnergyBeam: SKSpriteNode!
@@ -65,19 +71,66 @@ var touchHoldLeft: Bool = false
 var touchHoldRight: Bool = false
 var gunBool: Bool = false
 
-//
-let secondsM = 0.2
-let delayM = secondsM * Double(NSEC_PER_SEC)  // nanoseconds per seconds
-var dispatchTimeM = dispatch_time(DISPATCH_TIME_NOW, Int64(delayM))
-//
+////
+//let secondsM = 0.2
+//let delayM = secondsM * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+//var dispatchTimeM = dispatch_time(DISPATCH_TIME_NOW, Int64(delayM))
+////
+
+
+func BGScroll() {
+    
+    
+    bg1.position = CGPointMake(bg1.position.x, bg1.position.y - 2)
+    bg2.position = CGPointMake(bg2.position.x, bg2.position.y - 2)
+    
+    
+    if(bg1.position.y < -bg1.size.height)
+        
+    {
+        
+        bg1.position = CGPointMake(bg2.position.x, bg1.position.y + bg2.size.height )
+        
+    }
+    
+    if(bg2.position.y < -bg2.size.height)
+        
+    {
+        
+        bg2.position = CGPointMake(bg1.position.x, bg2.position.y + bg1.size.height)
+        
+    }
+    
+    
+}
+
+
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
+//        println(DC)
+        
         missileIndicator = childNodeWithName("missileIndicator") as? SKSpriteNode
         
         initialGameState()
+        
+        bg1.anchorPoint = CGPointZero
+        bg1.position = CGPoint(x: 0, y: 0)
+        bg1.zPosition = -1
+        bg1.size = CGSize(width: frame.width, height: frame.height)
+        
+        bg2.anchorPoint = CGPointZero
+        bg2.position = CGPoint(x: 0, y: bg1.size.height - 1)
+        bg2.zPosition = -1
+        bg2.size = CGSize(width: frame.width, height: frame.height)
+
+        
+        addChild(bg2)
+        addChild(bg1)
+        
+        
         
         
         
@@ -92,7 +145,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ammoCounter = childNodeWithName("ammoCounter") as? SKLabelNode
         ammoCounter.text = "\(ammoCount)"
         
-        
         fireEnergyBeam = childNodeWithName("buttonThree") as? SKSpriteNode
         fireMissile = childNodeWithName("fireTwo") as? SKSpriteNode
         fireChaingun = childNodeWithName("fireOne") as? SKSpriteNode
@@ -101,7 +153,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveLeft = childNodeWithName("moveLeft") as? SKSpriteNode
         
         backgroundColor = UIColor.blackColor()
-        
         physicsWorld.contactDelegate = self
         
     }
@@ -115,22 +166,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if spawnAlien .containsPoint(location) {
                 
                 spawnAlienOne()
-                //                println("alienspawned")
                 
             }
-            
-            
             
             if moveRight .containsPoint(location) {
                 
                 touchHoldRight = true
+                touchHoldLeft = false
                 
             }
             
             if moveLeft .containsPoint(location) {
                 
                 touchHoldLeft = true
-                
+                touchHoldRight = false
             }
             
             
@@ -153,23 +202,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if fireEnergyBeam .containsPoint(location) {
                 
                 fireEBeam()
-                //                println("beam button pressed")
                 
             }
-            
-            
-            
-            
         }
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         
-        touchHoldRight = false
-        gunBool = false
-        touchHoldLeft = false
+        for touch: AnyObject in touches {
+            
+            let location = touch.locationInNode(self)
+            
+            if moveLeft .containsPoint(location) {
+                
+            
+                
+                touchHoldLeft = false
+                
+                
+            }
+        
+            if moveRight .containsPoint(location) {
+                
+                touchHoldRight = false
+                
+            }
+        
+            if fireChaingun .containsPoint(location) {
+                
+                gunBool = false
+
+                
+            }
+     
+        
+        }
+        
+        }
+    
+    
+    func genNumber() {
+        
+        
+        dropChance = random() % 5
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -191,6 +276,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             moveShipLeft()
         }
+    
+        bg1.position = CGPointMake(bg1.position.x, bg1.position.y - 2)
+        bg2.position = CGPointMake(bg2.position.x, bg2.position.y - 2)
+        
+        
+        if(bg1.position.y < -bg1.size.height)
+            
+        {
+            
+            bg1.position = CGPointMake(bg2.position.x, bg1.position.y + bg2.size.height )
+            
+        }
+        
+        if(bg2.position.y < -bg2.size.height)
+            
+        {
+            
+            bg2.position = CGPointMake(bg1.position.x, bg2.position.y + bg1.size.height)
+            
+        }
+   
+    
+    
     }
     
     func chainDelay() {
@@ -206,19 +314,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    
-    
-    
-    ///// DESTROY CODE ~~~~~~~~~~~~~~~~
-    
-    
-    
-    //    func enemyDestroyed() {
-    //
-    //        var explosion = SKSpriteNode(imageNamed: "explosion")
-    //
-    //
-    //    }
     
     
     ///// ENEMY ALIEN CODE !!~~~~~~~~~~~~~~~~~~
@@ -302,6 +397,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func ammoDropAction() {
+        
+        
+     
+        
+    }
+
     
     
     //// -------> COLLISION SHIT ~~~~~~~~~~~~~
@@ -353,6 +455,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 addChild(explosion)
                 
                 firstBody?.removeFromParent()
+                
+                println(dropChance)
+                println(ammoDropChance)
+                
+                genNumber()
+                
+                if dropChance == ammoDropChance {
+                    
+                    println("drop")
+                    
+                    
+//                    var ammoDrop: SKShapeNode
+//                    
+//                    if ammoDrop = ammoDrop? {
+//
+//                    
+//                    ammoDrop.physicsBody = SKPhysicsBody(circleOfRadius: 15)
+//                    ammoDrop = SKShapeNode(ellipseOfSize: CGSizeMake(30, 30))
+//                    ammoDrop.position = firstBody!.position
+//                    addChild(ammoDrop)
+//                    ammoDrop.physicsBody?.applyImpulse(CGVectorMake(0, -25))
+//                    ammoDrop.physicsBody?.affectedByGravity = false
+//                    }
+                    
+                    
+                }
+                
+            
                 
                 delay(0.3, closure: { () -> () in
                     
@@ -464,8 +594,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     ///// MISSILE CODE ----!!!!!!!!!!!!!!!!!!!!!!
     
-    
-    
     func launchMissle() {
         
         missileDamage = 100
@@ -474,10 +602,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         missileReloaded = false
         missileIndicator.hidden = true
-        
-        //
-        //        println(missileReloaded.boolValue)
-        //
         
         let missile1 = SKSpriteNode(imageNamed: "missile1")
         missile1.position = CGPoint(x: playerShip.position.x + 35, y: playerShip.position.y - 30)
@@ -496,7 +620,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let thrust = SKSpriteNode(imageNamed: "thrust1")
         globalThrust = thrust
-
+        
         
         thrust.size = CGSizeMake(15, 30)
         thrust.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(20, 50))
@@ -523,7 +647,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         updateMissileCount()
         
     }
+
     
+        
     
     func moveShipRight() {
         

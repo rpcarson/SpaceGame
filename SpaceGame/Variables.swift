@@ -21,3 +21,6 @@ var moveRight: SKSpriteNode!
 
 
 
+
+
+
