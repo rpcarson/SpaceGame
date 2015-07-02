@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B325DE91B43A3ED0098A44D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B325DE71B43A3ED0098A44D /* Fabric.framework */; };
+		5B325DEA1B43A3ED0098A44D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B325DE81B43A3ED0098A44D /* Crashlytics.framework */; };
 		5B622A6A1B3DAF8300DADF2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B622A691B3DAF8300DADF2A /* AppDelegate.swift */; };
 		5B622A6C1B3DAF8300DADF2A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5B622A6B1B3DAF8300DADF2A /* GameScene.sks */; };
 		5B622A6E1B3DAF8300DADF2A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B622A6D1B3DAF8300DADF2A /* GameScene.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B325DE71B43A3ED0098A44D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		5B325DE81B43A3ED0098A44D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		5B622A641B3DAF8300DADF2A /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B622A681B3DAF8300DADF2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B622A691B3DAF8300DADF2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B325DEA1B43A3ED0098A44D /* Crashlytics.framework in Frameworks */,
+				5B325DE91B43A3ED0098A44D /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +89,8 @@
 		5B622A661B3DAF8300DADF2A /* SpaceGame */ = {
 			isa = PBXGroup;
 			children = (
+				5B325DE71B43A3ED0098A44D /* Fabric.framework */,
+				5B325DE81B43A3ED0098A44D /* Crashlytics.framework */,
 				5B622A691B3DAF8300DADF2A /* AppDelegate.swift */,
 				5B622A6B1B3DAF8300DADF2A /* GameScene.sks */,
 				5B622A6D1B3DAF8300DADF2A /* GameScene.swift */,
@@ -131,6 +139,7 @@
 				5B622A601B3DAF8300DADF2A /* Sources */,
 				5B622A611B3DAF8300DADF2A /* Frameworks */,
 				5B622A621B3DAF8300DADF2A /* Resources */,
+				5B325DE61B43A3C40098A44D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -165,6 +174,7 @@
 		5B622A5C1B3DAF8300DADF2A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Reed Carson";
 				TargetAttributes = {
@@ -216,6 +226,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5B325DE61B43A3C40098A44D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 919c1dcc4c93b4fe1ee65e25b0c8eacae9997ac5 b8b7a2280e59a3daecfcc578afa66830fd2f15742de7c1ecc8ffdd0ebb41fbd9";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5B622A601B3DAF8300DADF2A /* Sources */ = {
@@ -353,7 +379,11 @@
 		5B622A881B3DAF8300DADF2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SpaceGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -363,7 +393,11 @@
 		5B622A891B3DAF8300DADF2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SpaceGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
